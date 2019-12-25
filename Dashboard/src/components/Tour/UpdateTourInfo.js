@@ -20,11 +20,11 @@ import PageTitle from "../common/PageTitle";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-class UpdatePageInfo extends Component {
+class UpdateTourInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: {},
+      tour: {},
       title: "",
       description: "",
       profileImg: "",
@@ -74,7 +74,7 @@ class UpdatePageInfo extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:8082/api/pages/" + this.props.match.params.id)
+      .get("http://localhost:8082/api/tours/" + this.props.match.params.id)
       .then(res => {
         this.setState({
           title: res.data.title,
@@ -91,18 +91,18 @@ class UpdatePageInfo extends Component {
         });
       })
       .catch(err => {
-        console.log("Error from UpdatePageInfo");
+        console.log("Error from UpdateTourInfo");
       });
   }
 
   onDeleteClick(id) {
     axios
-      .delete("http://localhost:8082/api/pages/" + this.props.match.params.id)
+      .delete("http://localhost:8082/api/tours/" + this.props.match.params.id)
       .then(res => {
-        this.props.history.push("/pages");
+        this.props.history.push("/tours");
       })
       .catch(err => {
-        console.log("Error form ShowPageDetails_deleteClick");
+        console.log("Error form ShowtourDetails_deleteClick");
       });
   }
 
@@ -128,19 +128,19 @@ class UpdatePageInfo extends Component {
     };
     axios
       .put(
-        "http://localhost:8082/api/pages/" + this.props.match.params.id,
+        "http://localhost:8082/api/tours/" + this.props.match.params.id,
         data
       )
       .then(res => {
-        this.props.history.push("/pages/");
+        this.props.history.push("/tours/");
       })
       .catch(err => {
-        console.log("Error in UpdatePageInfo!");
+        console.log("Error in UpdateTourInfo!");
       });
   };
 
   render() {
-    const page = this.state.page;
+    const tour = this.state.tour;
     return (
       <Container fluid className="main-content-container px-4">
         {/* Page Header */}
@@ -148,7 +148,7 @@ class UpdatePageInfo extends Component {
           <PageTitle
             sm="4"
             title={this.state.title}
-            subtitle="Page"
+            subtitle="Tour"
             className="text-sm-left"
           />
         </Row>
@@ -164,7 +164,7 @@ class UpdatePageInfo extends Component {
                 <CardBody>
                   <FormInput
                     type="text"
-                    placeholder="Title of the Page"
+                    placeholder="Title of the Tour"
                     name="title"
                     className="form-control mb-3"
                     value={this.state.title}
@@ -300,7 +300,7 @@ class UpdatePageInfo extends Component {
                         type="button"
                         size="sm"
                         theme="danger"
-                        onClick={this.onDeleteClick.bind(this, page._id)}
+                        onClick={this.onDeleteClick.bind(this, tour._id)}
                       >
                         <i className="material-icons">delete</i>Delete Post
                       </Button>
@@ -383,13 +383,13 @@ class UpdatePageInfo extends Component {
   }
 }
 
-export default UpdatePageInfo;
+export default UpdateTourInfo;
 
 // import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 // import axios from "axios";
 
-// class UpdatePageInfo extends Component {
+// class UpdateTourInfo extends Component {
 //   constructor(props) {
 //     super(props);
 //     this.state = {
@@ -410,7 +410,7 @@ export default UpdatePageInfo;
 //         });
 //       })
 //       .catch(err => {
-//         console.log("Error from UpdatePageInfo");
+//         console.log("Error from UpdateTourInfo");
 //       });
 //   }
 
@@ -435,13 +435,13 @@ export default UpdatePageInfo;
 //         this.props.history.push("/blog-posts/");
 //       })
 //       .catch(err => {
-//         console.log("Error in UpdatePageInfo!");
+//         console.log("Error in UpdateTourInfo!");
 //       });
 //   };
 
 //   render() {
 //     return (
-//       <div className="UpdatePageInfo">
+//       <div className="UpdateTourInfo">
 //         <div className="container">
 //           <div className="row">
 //             <div className="col-md-8 m-auto">
@@ -497,4 +497,4 @@ export default UpdatePageInfo;
 //   }
 // }
 
-// export default UpdatePageInfo;
+// export default UpdateTourInfo;

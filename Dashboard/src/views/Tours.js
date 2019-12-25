@@ -3,61 +3,51 @@ import React, { Component } from "react";
 import { Container, Row } from "shards-react";
 
 import axios from "axios";
-import PostCard from "../components/Post/PostCard";
+import TourCard from "../components/Tour/TourCard";
 
 import PageTitle from "../components/common/PageTitle";
 
 import "../App.css";
 
-class BlogPosts extends Component {
+class Tours extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      tours: []
     };
   }
+
   componentDidMount() {
     axios
-      .get("http://localhost:8082/api/posts")
+      .get("http://localhost:8082/api/tours")
       .then(res => {
         this.setState({
-          posts: res.data
+          tours: res.data
         });
       })
       .catch(err => {
-        console.log("Error from postList");
-      });
-  }
-
-  onDeleteClick(id) {
-    axios
-      .delete("http://localhost:8082/api/posts/" + this.props.match.params.id)
-      .then(res => {
-        //this.props.history.push("/blog-posts");
-        console.log(this.state);
-      })
-      .catch(err => {
-        console.log("Error form ShowPostDetails_deleteClick");
+        console.log("Error from ShowTourList");
       });
   }
 
   render() {
-    const posts = this.state.posts;
-    console.log("PrintPost: " + posts);
-    let postList;
+    const tours = this.state.tours;
+    console.log("PrintPost: " + tours);
+    let tourList;
 
-    if (!posts) {
-      postList = "there is no post recored!";
+    if (!tours) {
+      tourList = "there is no tour recored!";
     } else {
-      postList = posts.map((post, k) => <PostCard post={post} key={k} />);
+      tourList = tours.map((tour, k) => <TourCard tour={tour} key={k} />);
     }
+    console.log("tourList" + tourList);
     return (
       <Container fluid className="main-content-container px-4 pb-4">
         {/* Page Header */}
         <Row noGutters className="page-header py-4">
           <PageTitle
             sm="4"
-            title="Blog Posts"
+            title="Tours"
             subtitle="Components"
             className="text-sm-left"
           />
@@ -174,7 +164,7 @@ class BlogPosts extends Component {
                 </th>
               </tr>
             </thead>
-            <tbody>{postList}</tbody>
+            <tbody>{tourList}</tbody>
           </table>
 
           <div
@@ -224,4 +214,4 @@ class BlogPosts extends Component {
   }
 }
 
-export default BlogPosts;
+export default Tours;

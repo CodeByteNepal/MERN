@@ -1,6 +1,5 @@
 import React from "react";
 
-import PropTypes from "prop-types";
 import { Nav, NavItem, NavLink } from "shards-react";
 import { NavLink as RouteNavLink } from "react-router-dom";
 
@@ -45,7 +44,7 @@ class SidebarNavItems extends React.Component {
   render() {
     const { navItems: items } = this.state;
 
-    var contentKeys = Object.keys(items);
+    //var contentKeys = Object.keys(items);
     //console.log(contentKeys);
     // const innerMenu = if(this.navItems.hasContent){
     //   console.log(navItems.content)
@@ -72,7 +71,27 @@ class SidebarNavItems extends React.Component {
                 )}
               </NavLink>
 
-              {item.title == "Page" ? (
+              {console.log("inner menu" + item.content.title)}
+
+              {/* {item.content ? (
+                <div
+                  tabIndex="-1"
+                  role="menu"
+                  className="collapse show dropdown-menu dropdown-menu-small"
+                >
+                  <a
+                    className="dropdown-item"
+                    tabIndex="0"
+                    href={item.content.to}
+                  >
+                    {item.content.title}
+                  </a>
+                </div>
+              ) : (
+                ""
+              )} */}
+
+              {item.title === "Page" ? (
                 <div
                   tabIndex="-1"
                   role="menu"
