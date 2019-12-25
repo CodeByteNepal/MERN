@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const PostSchema = new Schema(
+const TourSchema = new Schema(
   {
     _id: mongoose.Schema.Types.ObjectId,
     title: { type: String, required: true },
@@ -30,8 +30,8 @@ const PostSchema = new Schema(
     // ]
   },
   {
-    collection: "posts"
+    collection: "tours"
   }
 );
 
-module.exports = Post = mongoose.model("post", PostSchema);
+module.exports = Tour = mongoose.model("tour", TourSchema);

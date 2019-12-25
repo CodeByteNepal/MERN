@@ -49,8 +49,9 @@ class Pages extends React.Component {
     } else {
       pageList = pages.map((page, k) => <PageCard page={page} key={k} />);
     }
+    console.log("pageList" + pageList);
     return (
-      <Container fluid className="main-content-container px-4">
+      <Container fluid className="main-content-container px-4 pb-4">
         {/* Page Header */}
         <Row noGutters className="page-header py-4">
           <PageTitle
