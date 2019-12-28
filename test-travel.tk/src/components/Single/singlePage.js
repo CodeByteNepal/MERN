@@ -1,9 +1,18 @@
 import React, { Component } from "react";
+import { blogPostGet } from '../../actions';
+import { connect } from 'react-redux';
 
 import customHeader from "../../assets/img/beach1.jpg";
 import Feature from "../Slider/Feature";
 
+
 class singlePage extends Component {
+
+  componentDidMount() {
+    this.props.blogPostGet();
+    // alert('singlePage');
+  }
+
   render() {
     var customHeaderImage = {
       backgroundImage: `url(${customHeader})`
@@ -2302,4 +2311,4 @@ class singlePage extends Component {
   }
 }
 
-export default singlePage;
+export default connect(null, { blogPostGet })(singlePage);
